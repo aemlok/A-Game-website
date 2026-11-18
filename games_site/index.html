@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Schoology</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="js/script.js" defer></script>
+
+
+</head>
+<body>
+  
+  
+  <div id="siteContent">
+    
+    <h1> </h1>
+    <script src="device-auth.js"></script>
+    
+    <div id="homeTab" class="tab" style="display:none;">
+      <div class="settings-container">
+        <h1 >Settings</h1>
+        <label class="toggle">
+          <button class="setting" onclick="showPopup()">Goguardian testing</button>
+
+          <span class="help" data-tooltip="One time popup for shenanigans">?</span>
+        </label>
+
+        <label class="toggle">
+          <input type="checkbox" id="popupToggle">
+
+          <span>Enable Goguardian Testing Popups</span>
+
+          <span class="help" data-tooltip="When the webpage is closed it will give you a popup asking if you want to close it (Goguardian bypass) also yes it does work and is global now">?</span>
+        </label>
+        <label class="toggle">
+          <span>Tilt Strength</span>
+          <input type="number" id="tiltStrengthInput"value="5">
+          Default: 5
+        </label>
+
+        <label class="toggle">
+            <span>Lift Height (px)</span>
+            <input type="number" id="tiltLiftInput" value="5">
+            Default: 5
+        </label>
+        <label class="toggle">
+            <input type="checkbox" id="tiltEnabledToggle">
+            <span>Enable/Disable Tilt</span>
+            
+        </label>
+      </div>
+    </div>
+
+    <div id="gamesTab" class="tab">
+          
+      <div id="games-container" class="game-card">
+
+     </div>
+    </div>
+
+    <div id="ADmodTab" class="tab" style="display:none;">
+    <div id="ADmod-container" class="game-card"></div>
+    </div>
+
+    <div id="game-overlay" class="game-overlay hidden">
+        <div class="game-overlay-bar">
+            <span id="game-overlay-title"></span>
+            <button id="game-overlay-close">✕ Close</button>
+        </div>
+        <iframe id="game-overlay-frame" src="" allowfullscreen></iframe>
+    </div>
+
+
+    <div class="tab-bar">
+      <button onclick="showTab('gamesTab')">Games</button>
+      <button onclick="showTab('ADmodTab')">Antimatter Dimension Mods</button>
+      <button onclick="showTab('homeTab')">Settings</button>
+    </div>
+
+
+
+
+
+</body>
+
+<canvas id="starfield"></canvas>
+
+</html>

@@ -1,0 +1,256 @@
+body {
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 40px;
+    padding-bottom: 80px;
+}
+h1 {
+    margin-bottom: 30px;
+    font-family: "Bitcount Prop Double Ink", sans-serif;
+}
+.game-card {
+    display: grid;
+    flex-wrap: wrap;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    perspective: 1000px;
+}
+.game {
+    position: relative;
+    z-index: 1;
+    
+    background: #1c2040;
+    padding: 20px;
+    border-radius: 10px;
+    width: 240px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    transition: transform 0.1s ease-out, box-shadow 0.2s ease;
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+.game h2 {
+    margin-top: 100;
+    font-family: "Bitcount Prop Double Ink", sans-serif;
+    background: linear-gradient(90deg, rgb(100, 93, 241) 0%, rgb(0, 213, 255) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.game-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgb(96, 4, 104);
+    transition: 0.2s ease;
+    border: 5px solid #000000;
+    border-radius: 15px;
+}
+.game::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    background: linear-gradient(45deg, rgba(141, 141, 228, 0.5), rgba(26, 18, 173, 0.5));
+    border-radius: 15px;
+    filter: blur(15px);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.game:hover::before {
+    opacity: 1; /* gradient glow fades in on hover */
+}
+.game-button {
+    padding: 10px 16px;
+    background: linear-gradient(90deg, rgb(100, 93, 241) 0%, rgb(0, 213, 255) 100%);
+    transition: background-color 0.7s ease;
+    width: 250px;
+    min-height: 50px;
+    height: auto;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.3;
+
+    font-size: 14px;
+
+    border: none;
+    cursor: pointer;
+    color: #000;
+    font-weight: bold;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+.game-button:hover {
+    background: #9df;
+}
+@font-face {
+    font-family: "Bitcount Prop Double Ink";
+    src: url("fonts/BitcountPropDoubleInk.woff2") format("woff2"),
+        url("fonts/BitcountPropDoubleInk.woff") format("woff"),
+        url("fonts/BitcountPropDoubleInk.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+
+.setting {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 16px;
+    color: #000;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    background: #b2b1c0;
+    display: block; 
+    align-self: center;
+}
+
+.setting:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgb(137, 132, 241);
+}
+
+.settings-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  background: #111;
+  padding: 10px 0;
+  border-top: 2px solid #333;
+  z-index: 1000;
+}
+
+.tab-bar button {
+  background: #222;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.tab-bar button:hover {
+  background: #444;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.help {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 18px;
+  height: 18px;
+
+  border-radius: 50%;
+  background: #444;
+  color: white;
+
+  font-size: 12px;
+  cursor: help;
+
+  position: relative;
+}
+
+.help::after {
+  content: attr(data-tooltip);
+
+  position: absolute;
+  bottom: 140%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  background: black;
+  color: white;
+
+  padding: 6px 8px;
+  border-radius: 6px;
+
+  font-size: 12px;
+  width: 180px;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.2s ease;
+
+  z-index: 9999;
+  text-align: center;
+}
+
+.help:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+.game-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #000;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+}
+.game-overlay.hidden {
+    display: none;
+}
+.game-overlay-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: #111;
+    color: white;
+}
+#game-overlay-frame {
+    flex: 1;
+    border: none;
+    width: 100%;
+}
+#starfield {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: #0f1220;
+}
